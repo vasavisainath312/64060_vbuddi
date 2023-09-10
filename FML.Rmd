@@ -1,0 +1,39 @@
+**Considering the Insect Sprays Data sets,
+**source - from R Inbuilt data set(InsectSprays),the data has a mix of quantitative and qualitative(categorical) variables.
+
+```{r}
+data(InsectSprays)
+InsectSprays
+# descriptive statistics
+#Quantitative variables
+summary(InsectSprays$count)
+
+# Measures of central tendency
+mean(InsectSprays$count)  # Mean
+median(InsectSprays$count)  # Median
+
+# Measures of dispersion
+sd(InsectSprays$count)  # Standard Deviation
+var(InsectSprays$count)  # Variance
+range(InsectSprays$count)  # Range (min and max)
+quantile(InsectSprays$count, probs = c(0.25, 0.75))  # Interquartile Range (IQR)
+#Qualitative variables
+summary(InsectSprays$spray)
+counts <- InsectSprays$count
+
+# Min-max normalization
+min_count <- min(counts)
+max_count <- max(counts)
+
+normalized_counts <- (counts - min_count) / (max_count - min_count)
+
+# Replace the original 'count' variable with the normalized values
+InsectSprays$count <- normalized_counts
+InsectSprays$count
+#plot
+x=InsectSprays$count
+y=InsectSprays$spray
+plot(x,y,col="black")
+
+
+```
